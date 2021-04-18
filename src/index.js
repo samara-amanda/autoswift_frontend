@@ -45,7 +45,7 @@ function postFetch(car) {
         // render JSON response
         let newCar = new Car(carData, carData.attributes)
         
-        document.querySelector("#car-container").innerHTML += newCar.renderCar()
+        document.querySelector("#car-list").innerHTML += newCar.renderCar()
     })
 }
 
@@ -69,6 +69,22 @@ function patchCar(car) {
           car.renderCar()
       })
 
+}
+
+function deleteCar(id) {
+    
+    fetch(`${baseURL}/${id}`, {
+
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        }
+    })
+        .then(r => r.json())
+        .then(json => alert(json.message))
+        
+    
 }
 
 

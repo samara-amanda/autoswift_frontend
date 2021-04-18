@@ -1,6 +1,6 @@
 class Car {
 
-    static container = document.querySelector("#car-container")
+    static container = document.querySelector("#car-list")
 
     constructor(car, carAttributes) {
         this.id = car.id
@@ -27,7 +27,7 @@ class Car {
             e.target.innerText = "Save"
 
         }else if(e.target.innerText === "Delete"){
-            this.deleteItem(e)
+            this.removeCar(e)
 
         } else if(e.target.innerText === "Save"){ 
             this.saveUpdatedCar()
@@ -66,7 +66,7 @@ class Car {
 
 
     attachToDom() {
-        document.getElementById('car-container').appendChild(this.renderCar())
+        document.getElementById('car-list').appendChild(this.renderCar())
     }
 
     static findById(id) {
@@ -125,6 +125,17 @@ class Car {
     
         patchCar(this)
     }
+
+    removeCar(e) {
+        
+        this.element.remove() // remove it before the fetch request 
+        let id = this.id
+        deleteCar(id) // moved fetch to itemApi for separation of concerns
+        
+
+    }
+
+    
 }
 
 Car.all = [];
