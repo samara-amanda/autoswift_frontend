@@ -1,47 +1,39 @@
-const endPoint = "http://localhost:3000/api/v1/cars"
+const baseURL = "http://localhost:3000/api/v1/cars"
 
 document.addEventListener('DOMContentLoaded', () => {
     // fetch and load cars
     getCars()
-    const createCarForm = document.querySelector("#create-car-form")
 
-    createCarForm.addEventListener("submit", (e) => createFormHandler(e))
+    // listen for submit event on form and handle data
+    const createCarForm = document.querySelector("#create-car-form")
+    createCarForm.addEventListener("submit", (e) => car.createCarForm(e))
+
+     // listen for the submit event of the edit form and handle the data
+    
+    document.querySelector('#update-car').addEventListener('submit', e => car.saveUpdatedCar(e))
 })
 
 
 function getCars() {
-    // get request
-    fetch(endPoint)
+    // get request and renders cars
+    fetch(baseURL)
     .then(response => response.json())
     .then(cars => {
         cars.data.forEach(car => {
             //accessing the attributes of each individual object. and manipulating the DOM
             let newCar = new Car(car, car.attributes)
-            document.querySelector("#car-container").innerHTML += newCar.renderCarCard()
+            newCar.attachToDom()
             // dried up code, added the render call in the Car class file. 
         })
     })
 }
 
 
-function createFormHandler(e) {
-    e.preventDefault()
-    const yearInput = document.querySelector("#input-year").value
-    const brandInput = document.querySelector("#input-brand").value
-    const modelInput = document.querySelector("#input-model").value
-    const priceInput = document.querySelector("#input-price").value
-    const imageInput = document.querySelector("#input-image-url").value
-    const userInput = document.querySelector("#users").value
-
-    postFetch(yearInput, brandInput, modelInput, priceInput, imageInput, userInput)
-}
-
-
-function postFetch(year, brand, model, price, image_url, user_id) {
+function postFetch(car) {
     // build my body object outside of my
     const bodyData = {year, brand, model, price, image_url, user_id}
 
-    fetch(endPoint, {
+    fetch(baseURL, {
         // POST request.. sends back the object to the API 
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -53,7 +45,30 @@ function postFetch(year, brand, model, price, image_url, user_id) {
         // render JSON response
         let newCar = new Car(carData, carData.attributes)
         
-        document.querySelector("#car-container").innerHTML += newCar.renderCarCard()
+        document.querySelector("#car-container").innerHTML += newCar.renderCar()
     })
 }
+
+
+function patchCar(car) {
+    let {year, brand, model, price, image_url, user_id} = car
+    const carInfo = {year, brand, model, price, image_url, user_id}
+
+    fetch(`${baseURL}/${car.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(carInfo),
+    })
+      .then(res => res.json())
+      
+      // our backend responds with the updated syllabus instance represented as JSON
+      .then(json => {
+          car.renderCar()
+      })
+
+}
+
 
