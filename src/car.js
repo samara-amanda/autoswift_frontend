@@ -1,9 +1,10 @@
 class Car {
+    static all = []
 
     static container = document.querySelector("#car-list")
 
-    constructor(car, carAttributes) {
-        this.id = car.id
+    constructor(car, carAttributes) {  
+        this.id = car.id  
         this.year = carAttributes.year
         this.brand = carAttributes.brand
         this.model = carAttributes.model
@@ -13,12 +14,13 @@ class Car {
 
 
         this.element = document.createElement('li')
-        this.element.id = `item-${car.id}`
-        this.element.dataset.id = car.id 
+        this.element.id = `item-${this.id}`
+        this.element.dataset.id = this.id 
 
         this.element.addEventListener('click', this.handleItemClick)
 
         Car.all.push(this)
+        
     }
 
     handleItemClick = (e) => {
@@ -26,7 +28,7 @@ class Car {
             this.renderEditForm(e.target)
             e.target.innerText = "Save"
 
-        }else if(e.target.innerText === "Delete"){
+        } else if(e.target.innerText === "Delete"){
             this.removeCar(e)
 
         } else if(e.target.innerText === "Save"){ 
@@ -35,7 +37,7 @@ class Car {
         }
     }
 
-    renderCar() {
+    renderCar() { 
         this.element.innerHTML = `
         <div data-id=${this.id}>
             <img src=${this.image_url} class="image_url" height="200" width="250">
@@ -48,32 +50,18 @@ class Car {
             <button class="delete" data-id="${this.id}">Delete</button>
         
         <br><br>`;
-    
         return this.element
     }
 
-    createCarForm(e) {
-        e.preventDefault()
-        this.year = document.querySelector("#input-year").value
-        this.brand = document.querySelector("#input-brand").value
-        this.model = document.querySelector("#input-model").value
-        this.price = document.querySelector("#input-price").value
-        this.image_url = document.querySelector("#input-image-url").value
-        this.user = document.querySelector("#users").value
-    
-        postFetch(this)
-    }
-
-
     attachToDom() {
-        document.getElementById('car-list').appendChild(this.renderCar())
+        list.appendChild(this.renderCar())
     }
 
     static findById(id) {
         return this.all.find(car => car.id === id);
     }
 
-    renderEditForm = (editBtn) => {
+    renderEditForm = (e) => {
         // now using this to access the element
         const div = this.element.querySelector('div')
 
@@ -113,7 +101,7 @@ class Car {
     }
 
 
-    saveUpdatedCar(e) {
+    saveUpdatedCar = () => {
         this.id = this.element.dataset.id
         this.car = Car.findById(this.id);
         this.year = this.element.querySelector("#input-year").value
@@ -121,21 +109,16 @@ class Car {
         this.model = this.element.querySelector("#input-model").value
         this.price = this.element.querySelector("#input-price").value
         this.image_url = this.element.querySelector("#input-image-url").value
-        this.user_id = this.element.querySelector("#users").value
+        this.user = this.element.querySelector("#users").value
     
-        patchCar(this)
+        CarApi.patchCar(this)
     }
 
-    removeCar(e) {
-        
+    removeCar = (e) => {
         this.element.remove() // remove it before the fetch request 
-        let id = this.id
-        deleteCar(id) // moved fetch to itemApi for separation of concerns
-        
-
+        CarApi.deleteCar(this.id) // moved fetch to itemApi for separation of concerns
     }
 
     
 }
 
-Car.all = [];
