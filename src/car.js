@@ -1,5 +1,4 @@
 class Car {
-
     constructor(car, carAttributes) {  
         this.id = car.id  
         this.year = carAttributes.year
