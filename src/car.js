@@ -1,7 +1,4 @@
 class Car {
-    static all = []
-
-    static container = document.querySelector("#car-list")
 
     constructor(car, carAttributes) {  
         this.id = car.id  
@@ -14,31 +11,31 @@ class Car {
 
 
         this.element = document.createElement('li')
-        this.element.id = `item-${this.id}`
+        
+        this.element.id = `car-${this.id}`
         this.element.dataset.id = this.id 
 
-        this.element.addEventListener('click', this.handleItemClick)
+        this.element.addEventListener('click', this.clickEvents)
 
         Car.all.push(this)
         
     }
 
-    handleItemClick = (e) => {
-        if (e.target.innerText === "Edit"){
+    clickEvents = (event) => {
+        if (event.target.innerText === "Edit"){
             this.renderEditForm(e.target)
-            e.target.innerText = "Save"
+            event.target.innerText = "Save"
 
-        } else if(e.target.innerText === "Delete"){
-            this.removeCar(e)
+        } else if(event.target.innerText === "Delete"){
+            this.deleteCar(event)
 
-        } else if(e.target.innerText === "Save"){ 
-            this.saveUpdatedCar()
-            e.target.innerText = "Edit"
+        } else if(event.target.innerText === "Save"){ 
+            this.updatedCarHandler()
+            event.target.innerText = "Edit"
         }
     }
 
     renderCar() { 
-        
         this.element.innerHTML = `
         <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
@@ -66,72 +63,85 @@ class Car {
         return this.element
     }
 
+    renderEditForm = (event) => {
+      // now using this to access the element
+      const div = this.element.querySelector('div')
+
+      div.innerHTML = `
+        <h3>Edit a Car Listing!</h3>
+  
+        <label>Image URL</label>
+        <input id='input-image-url' type="text" name="image-url" value="${this.image_url}" class="input-text">
+        <br><br>
+
+        <label>Year</label>
+        <input id='input-year' type="text" name="year" value="${this.year}" class="input-text">
+        <br><br>
+
+        <label>Brand</label>
+        <input id='input-brand' type="text" name="brand" value="${this.brand}" class="input-text">
+        <br><br>
+
+        <label>Model</label>
+        <input id='input-model' type="text" name="model" value="${this.model}" class="input-text">
+        <br><br>
+
+        <label>Price</label>
+        <input id='input-price' type="text" name="price" value="${this.price}" class="input-text">
+        <br><br>
+
+        <label>User</label>
+        <select id="users" name="users" value="${this.user.name}">
+          <option value="1">Amanda</option>
+          <option value="2">Cassie</option>
+          <option value="3">Cameron</option>
+        </select>
+        <br><br>
+      </form>
+    `;
+    
+  }
+
     attachToDom() {
-        list.appendChild(this.renderCar())
+        document.querySelector("#car-container").appendChild(this.renderCar())
     }
 
     static findById(id) {
         return this.all.find(car => car.id === id);
     }
 
-    renderEditForm = (e) => {
-        // now using this to access the element
-        const div = this.element.querySelector('div')
+    createCarHandler(event) {
+      event.preventDefault()
+  
+      const yearInput = document.getElementById('input-year').value
+      const brandInput = document.getElementById('input-brand').value
+      const modelInput = document.getElementById('input-model').value
+      const priceInput = document.getElementById('input-price').value
+      const userId = parseInt(document.querySelector('#users').value)
+      const imageUrlInput = document.getElementById('input-image-url').value
+  
+      createCar(yearInput, brandInput, modelInput, priceInput, imageUrlInput, userId)
+  }
 
-        div.innerHTML = `
-          <h3>Edit a Car Listing!</h3>
     
-          <label>Image URL</label>
-          <input id='input-image-url' type="text" name="image-url" value="${this.image_url}" class="input-text">
-          <br><br>
-
-          <label>Year</label>
-          <input id='input-year' type="text" name="year" value="${this.year}" class="input-text">
-          <br><br>
-
-          <label>Brand</label>
-          <input id='input-brand' type="text" name="brand" value="${this.brand}" class="input-text">
-          <br><br>
-
-          <label>Model</label>
-          <input id='input-model' type="text" name="model" value="${this.model}" class="input-text">
-          <br><br>
-
-          <label>Price</label>
-          <input id='input-price' type="text" name="price" value="${this.price}" class="input-text">
-          <br><br>
-
-          <label>User</label>
-          <select id="users" name="users" value="${this.user.name}">
-            <option value="1">Amanda</option>
-            <option value="2">Cassie</option>
-            <option value="3">Cameron</option>
-          </select>
-          <br><br>
-        </form>
-      `;
-      
-    }
-
-
-    saveUpdatedCar = () => {
+    updatedCarHandler() {
         this.id = this.element.dataset.id
         this.car = Car.findById(this.id);
-        this.year = this.element.querySelector("#input-year").value
-        this.brand = this.element.querySelector("#input-brand").value
-        this.model = this.element.querySelector("#input-model").value
-        this.price = this.element.querySelector("#input-price").value
-        this.image_url = this.element.querySelector("#input-image-url").value
-        this.user = this.element.querySelector("#users").value
+        this.year = this.element.yearInput
+        this.brand = this.element.brandInput
+        this.model = this.element.modelInput
+        this.price = this.element.priceInput
+        this.image_url = this.element.imageUrlInput
+        this.user = this.element.userInput
     
-        CarApi.patchCar(this)
+        patchReqCar(this)
     }
 
-    removeCar = (e) => {
+    deleteCar = (event) => {
         this.element.remove() // remove it before the fetch request 
-        CarApi.deleteCar(this.id) // moved fetch to itemApi for separation of concerns
+        deleteCar(this.id) // moved fetch to itemApi for separation of concerns
     }
 
     
 }
-
+Car.all = [];
