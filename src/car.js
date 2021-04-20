@@ -137,7 +137,7 @@ class Car {
     }
 
     deleteCar = (event) => {
-        this.element.remove() // remove it before the fetch request 
+        this.element.remove() 
         deleteCar(this.id) // moved fetch to itemApi for separation of concerns
     }
 
