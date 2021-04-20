@@ -38,18 +38,31 @@ class Car {
     }
 
     renderCar() { 
-        this.element.innerHTML = `
-        <div data-id=${this.id}>
-            <img src=${this.image_url} class="image_url" height="200" width="250">
-            <h3>${this.year} ${this.brand} ${this.model} </h3>
-            <p class="price"> ${"$" + this.price} </p>
-            <p class="user"> Contact Info: ${this.user.name} </p>
-            <p class="user"> ${this.user.email} </p>
-        </div>
-            <button class="edit" data-id="${this.id}">Edit</button>
-            <button class="delete" data-id="${this.id}">Delete</button>
         
-        <br><br>`;
+        this.element.innerHTML = `
+        <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+        <div data-id=${this.id}>
+          <img src=${this.image_url} class="img-fluid" alt="...">
+          <div class="card-body">
+            <h4 class="card-car-info">${this.year} ${this.brand} ${this.model}</h4>
+            <p class="card-text">${"$" + this.price}</p>
+            <h5 class="card-text">Seller Info: ${this.user.name}</h5>
+            <p class="card-text">${this.user.email}</p>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br><br>`
+        
         return this.element
     }
 
