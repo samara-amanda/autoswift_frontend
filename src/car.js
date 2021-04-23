@@ -13,27 +13,26 @@ class Car {
         
         this.element.id = `car-${this.id}`
         this.element.dataset.id = this.id 
-
-        this.element.addEventListener('click', this.clickEvents)
+        this.element.addEventListener('click', (event) => this.clickEvents(event))    
 
         Car.all.push(this)
     }
 
-    clickEvents = (event) => {
-      const editButton = document.getElementById("edit-btn")
-      const deleteButton = document.getElementById("delete-btn")
-      const saveButton = document.getElementById("save-btn")
+    clickEvents(event) {
+      const editTarget = event.target.innerText === "Edit"
+      const deleteTarget = event.target.innerText === "Delete"
+      const submitTarget = event.target.innerText === "Submit"
 
-        if (editButton === event.target){
-            this.renderEditForm(event.target)
 
-        } else if(deleteButton === event.target){
-          debugger
-            this.deleteCar(event)
+      if (editTarget){
+          this.renderEditForm(event.target)
 
-        } else if(saveButton === event.target){ 
-            this.updatedCarHandler()
-        }
+      } else if(deleteTarget){
+          this.deleteCar(event)
+
+      } else if(submitTarget){ 
+          this.updatedCarHandler()
+      }
     }
 
     renderCar() { 
@@ -91,7 +90,7 @@ class Car {
         <input id='input-price' type="text" name="price" value="${this.price}" class="input-text">
         <br><br>
 
-        <button id="save-btn" type="button" class="btn btn-sm btn-outline-secondary">Save</button>
+        <button id="submit-btn" type="button" class="btn btn-sm btn-outline-secondary">Submit</button>
         <button id="delete-btn" type="button" class="btn btn-sm btn-outline-secondary">Delete</button> `;
 
     }
@@ -131,8 +130,8 @@ class Car {
     }
 
     deleteCar = (event) => {
-        this.element.remove() 
-        CarApi.deleteCar(this.id) // moved fetch to itemApi for separation of concerns
+      this.element.remove() 
+      CarApi.deleteCar(this.id) // moved fetch to itemApi for separation of concerns
     }
 
 }
