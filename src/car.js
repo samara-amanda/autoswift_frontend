@@ -6,8 +6,8 @@ class Car {
         this.model = carAttributes.model
         this.price = carAttributes.price
         this.image_url = carAttributes.image_url
+        this.user_id = carAttributes.user_id
         this.user = carAttributes.user
-
 
         this.element = document.createElement('li')
         
@@ -17,20 +17,22 @@ class Car {
         this.element.addEventListener('click', this.clickEvents)
 
         Car.all.push(this)
-        
     }
 
     clickEvents = (event) => {
-        if (event.target.innerText === "Edit"){
-            this.renderEditForm(e.target)
-            event.target.innerText = "Save"
+      const editButton = document.getElementById("edit-btn")
+      const deleteButton = document.getElementById("delete-btn")
+      const saveButton = document.getElementById("save-btn")
 
-        } else if(event.target.innerText === "Delete"){
+        if (editButton === event.target){
+            this.renderEditForm(event.target)
+
+        } else if(deleteButton === event.target){
+          debugger
             this.deleteCar(event)
 
-        } else if(event.target.innerText === "Save"){ 
+        } else if(saveButton === event.target){ 
             this.updatedCarHandler()
-            event.target.innerText = "Edit"
         }
     }
 
@@ -48,8 +50,8 @@ class Car {
 
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                <button id="edit-btn" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <button id="delete-btn" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
               </div>
               </div>
             </div>
@@ -89,17 +91,10 @@ class Car {
         <input id='input-price' type="text" name="price" value="${this.price}" class="input-text">
         <br><br>
 
-        <label>User</label>
-        <select id="users" name="users" value="${this.user.name}">
-          <option value="1">Amanda</option>
-          <option value="2">Cassie</option>
-          <option value="3">Cameron</option>
-        </select>
-        <br><br>
-      </form>
-    `;
-    
-  }
+        <button id="save-btn" type="button" class="btn btn-sm btn-outline-secondary">Save</button>
+        <button id="delete-btn" type="button" class="btn btn-sm btn-outline-secondary">Delete</button> `;
+
+    }
 
     attachToDom() {
         document.querySelector("#car-container").appendChild(this.renderCar())
@@ -109,38 +104,37 @@ class Car {
         return this.all.find(car => car.id === id);
     }
 
-    createCarHandler(event) {
+    static createCarHandler(event) {
       event.preventDefault()
   
       const yearInput = document.getElementById('input-year').value
       const brandInput = document.getElementById('input-brand').value
       const modelInput = document.getElementById('input-model').value
       const priceInput = document.getElementById('input-price').value
-      const userId = parseInt(document.querySelector('#users').value)
+      const userInput = document.getElementById('users-select').value
       const imageUrlInput = document.getElementById('input-image-url').value
-  
-      createCar(yearInput, brandInput, modelInput, priceInput, imageUrlInput, userId)
-  }
+      
+      CarApi.postCarReq(yearInput, brandInput, modelInput, priceInput, userInput, imageUrlInput)
+    }
 
     
-    updatedCarHandler() {
+    updatedCarHandler = () => {
         this.id = this.element.dataset.id
         this.car = Car.findById(this.id);
-        this.year = this.element.yearInput
-        this.brand = this.element.brandInput
-        this.model = this.element.modelInput
-        this.price = this.element.priceInput
-        this.image_url = this.element.imageUrlInput
-        this.user = this.element.userInput
-    
-        patchReqCar(this)
+        this.year = this.element.querySelector('#input-year').value
+        this.brand = this.element.querySelector('#input-brand').value
+        this.model = this.element.querySelector('#input-model').value
+        this.price = this.element.querySelector('#input-price').value
+        this.image_url = this.element.querySelector('#input-image-url').value
+
+        CarApi.patchCarReq(this)
     }
 
     deleteCar = (event) => {
         this.element.remove() 
-        deleteCar(this.id) // moved fetch to itemApi for separation of concerns
+        CarApi.deleteCar(this.id) // moved fetch to itemApi for separation of concerns
     }
 
-    //#testing
 }
+
 Car.all = [];
