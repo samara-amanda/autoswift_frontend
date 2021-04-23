@@ -11,7 +11,7 @@ class User {
         const option = document.createElement('option')
         option.value  = this.id 
         option.innerText = this.name
-        userSelectDom.prepend(option)
+        userSelectDom.append(option)
     }
 
     static createUserHandler(event) {
