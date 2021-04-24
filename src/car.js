@@ -114,6 +114,8 @@ class Car {
       const imageUrlInput = document.getElementById('input-image-url').value
       
       CarApi.postCarReq(yearInput, brandInput, modelInput, priceInput, userInput, imageUrlInput)
+      document.getElementById("create-car-form").reset()
+
     }
 
     
