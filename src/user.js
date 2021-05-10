@@ -19,6 +19,8 @@ class User {
         const userInput = parseInt(document.querySelector('#users-select').value)
         UserApi.postUserReq(userInput)
     }
+
+    
 }
 
 User.all = [];
