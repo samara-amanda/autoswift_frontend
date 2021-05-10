@@ -17,6 +17,8 @@ class Car {
         } else if (e.target.id == "delete-btn"){
           e.currentTarget.remove() 
           CarApi.deleteCar(this.id)
+         } else if (e.target.id == "submit-btn") {
+           this.updatedCarHandler()
          }
       })
 
@@ -53,7 +55,8 @@ class Car {
 
 
     renderEditForm = (event) => {
-      document.querySelector('div[data-id]').innerHTML = `<h3>Edit a Car Listing!</h3>
+      debugger
+      this.div.innerHTML = `<h3>Edit a Car Listing!</h3>
         <label>Image URL</label>
         <input id='input-image-url' type="text" name="image-url" value="${this.image_url}" class="input-text">
         <br><br>
@@ -70,7 +73,8 @@ class Car {
         <input id='input-price' type="text" name="price" value="${this.price}" class="input-text">
         <br><br>
         <button id="submit-btn" type="button" class="btn btn-sm btn-outline-secondary">Submit</button>
-        <button id="delete-btn" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>`;
+        <button id="delete-btn" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+        <br><br>`;
      
     }
 
@@ -97,14 +101,14 @@ class Car {
 
     
     updatedCarHandler = () => {
-        this.id = this.div.dataset.id
+        this.id = this.id
         this.car = Car.findById(this.id);
         this.year = this.div.querySelector('#input-year').value
         this.brand = this.div.querySelector('#input-brand').value
         this.model = this.div.querySelector('#input-model').value
         this.price = this.div.querySelector('#input-price').value
         this.image_url = this.div.querySelector('#input-image-url').value
-
+debugger
         CarApi.patchCarReq(this)
     }
 
