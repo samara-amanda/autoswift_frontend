@@ -55,7 +55,6 @@ class Car {
 
 
     renderEditForm = (event) => {
-      debugger
       this.div.innerHTML = `<h3>Edit a Car Listing!</h3>
         <label>Image URL</label>
         <input id='input-image-url' type="text" name="image-url" value="${this.image_url}" class="input-text">
@@ -108,7 +107,7 @@ class Car {
         this.model = this.div.querySelector('#input-model').value
         this.price = this.div.querySelector('#input-price').value
         this.image_url = this.div.querySelector('#input-image-url').value
-debugger
+
         CarApi.patchCarReq(this)
     }
 
