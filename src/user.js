@@ -20,6 +20,10 @@ class User {
         UserApi.postUserReq(userInput)
     }
 
+    static findById(id) {
+        return User.all.find(user => user)
+    }
+
     
 }
 
