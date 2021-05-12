@@ -7,8 +7,7 @@ This app is designed for users who are looking to sell their cars or to simply b
 
 A User is able to:
 1. Create a Car listing
-2. Edit a Listing
-3. Delete a Listing
+2. View a Car Listing
 
 
 How to launch the app:
