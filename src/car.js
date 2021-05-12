@@ -58,7 +58,7 @@ class Car {
       const priceInput = document.getElementById('input-price').value
       const userInput = document.getElementById('users-select').value
       const imageUrlInput = document.getElementById('input-image-url').value
-      debugger
+      
       CarApi.postCarReq(yearInput, brandInput, modelInput, priceInput, userInput, imageUrlInput)
       document.getElementById("create-car-form").reset()
 
