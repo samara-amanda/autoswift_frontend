@@ -27,7 +27,7 @@ class Car {
 
     renderCar() { 
       const user = User.findById(this.user_id)
-
+     
         this.div.innerHTML = `
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
@@ -43,7 +43,6 @@ class Car {
             </div>
           </div>
         </div>
-
       <br><br>`
   
       return this.div
@@ -65,20 +64,19 @@ class Car {
 
     }
 
-
-    static searchBar() {
-      const searchForm = document.querySelector("#search-form")
-
-      searchForm.addEventListener("submit", (e) => {
-        e.preventDefault()
-        debugger
+    static sortPrice() {
+      const button = document.getElementById("sort-price")
+      button.addEventListener("click", (e) => {
+        const priceSortValue = Car.all.sort(function(a, b) { 
+          return a.price - b.price
+        })
         
-        const element = document.getElementById("search-input").value
-        const newCar = cars.filter(car => car)
+        priceSortValue.forEach(car => document.querySelector("#car-container").appendChild(car.div))
       })
     }
 
 }
+
 
 Car.all = [];
 

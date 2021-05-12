@@ -16,6 +16,6 @@ UserApi.getUsersReq()
 
 CarApi.getCarsReq()
 
-Car.searchBar()
+Car.sortPrice()
 
 
