@@ -1,5 +1,6 @@
 AUTOSWIFT 
 ----------------------------------------
+Link to Frontend Repo: https://github.com/samaracodes/autoswift_frontend
 Link to Backend Repo: https://github.com/samara-amanda/autoswift_backend
 
 
@@ -16,7 +17,8 @@ Run the following into the terminal ...
 2. rake db:create
 3. rake db:migrate
 4. rake db:seed
-4. rails s
+5. rails s
+6. open index.html
 
 ----- Copyright 2021 ----
 Samara Grant owns all rights to this application.
