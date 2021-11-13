@@ -27,7 +27,36 @@ class CarApi {
         })
     }
 
+    static patchCarReq(car) {
+        let {year, brand, model, price, image_url, user} = car
+        const carInfo = {year, brand, model, price, image_url, user}
 
+        fetch(`${url}/${car.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify(carInfo),
+        })
+        .then(res => res.json())
+        .then(json => {
+            car.renderCar()
+        })
+    }
+
+
+    static deleteCar(id) {
+        fetch(`${url}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        })
+        .then(r => r.json())
+        .then(json => alert(json.message))
+    }
     
 }
 

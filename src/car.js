@@ -38,7 +38,12 @@ class Car {
                   <p class="card-text">${"$" + this.price}</p>
                   <h5 class="card-text">Seller Info: ${user.name}</h5>
                   <p class="card-text">${user.email}</p>
-                    
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group" id="btn-group">
+                        <button id="edit-btn" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        <button id="delete-btn" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                      </div>
+                  </div>
                 </div>  
             </div>
           </div>
@@ -48,6 +53,34 @@ class Car {
       return this.div
     }
 
+
+    renderEditForm = (event) => {
+      this.div.innerHTML = `<h3>Edit a Car Listing!</h3>
+        <label>Image URL</label>
+        <input id='input-image-url' type="text" name="image-url" value="${this.image_url}" class="input-text">
+        <br><br>
+        <label>Year</label>
+        <input id='input-year' type="text" name="year" value="${this.year}" class="input-text">
+        <br><br>
+        <label>Brand</label>
+        <input id='input-brand' type="text" name="brand" value="${this.brand}" class="input-text">
+        <br><br>
+        <label>Model</label>
+        <input id='input-model' type="text" name="model" value="${this.model}" class="input-text">
+        <br><br>
+        <label>Price</label>
+        <input id='input-price' type="text" name="price" value="${this.price}" class="input-text">
+        <br><br>
+        <button id="submit-btn" type="button" class="btn btn-sm btn-outline-secondary">Submit</button>
+        <button id="delete-btn" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+        <br><br>`;
+
+    }
+
+
+    static findById(id) {
+        return this.all.find(car => car.id === id);
+    }
 
     static createCarHandler(event) {
       event.preventDefault()
@@ -63,6 +96,19 @@ class Car {
       document.getElementById("create-car-form").reset()
 
     }
+
+    updatedCarHandler = () => {
+      this.id = this.id
+      this.car = Car.findById(this.id);
+      this.year = this.div.querySelector('#input-year').value
+      this.brand = this.div.querySelector('#input-brand').value
+      this.model = this.div.querySelector('#input-model').value
+      this.price = this.div.querySelector('#input-price').value
+      this.image_url = this.div.querySelector('#input-image-url').value
+
+      CarApi.patchCarReq(this)
+    }
+
 
     static sortPrice() {
       const button = document.getElementById("sort-price")
