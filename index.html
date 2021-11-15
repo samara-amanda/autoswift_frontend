@@ -42,108 +42,93 @@
   </head>
   <body>
     <header>
-<!-- NAV STARTS HERE -->
-<!--- Menu Bar on Right hand side-->
-<div class="collapse bg-dark" id="navbarHeader">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 col-md-7 py-4">
-        <h4 class="text-white">About Us</h4>
-        <p class="text-muted">AutoSwift was designed for users to browse the latest Cars for sale, or to list their own Car to sell! </p>
+      <!--- Navigation Bar with Logo-->
+      <div class="navbar navbar-expand-sm fixed-top navbar-hide-on-scroll">
+        <div class="container-fluid">
+          <a href="#" class="navbar-brand d-flex">
+            <img src="AUTOSWIFT.png" alt="navbar logo"/>
+          </a>
+        </div>
       </div>
-      <div class="col-sm-4 offset-md-1 py-4">
-        <h4 class="text-white">Contact</h4>
-        <ul class="list-unstyled">
-          <li><a href="#" class="text-white">Follow on Twitter</a></li>
-          <li><a href="#" class="text-white">Like on Facebook</a></li>
-          <li><a href="#" class="text-white">Email Us</a></li>
-        </ul>
+    </header>
+
+    <div class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="autoswift-cutout.png" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="caption-line">
+              <h1 id="caption-1">Find Your Match</h1>
+              <p class="caption-2">Build your deal with confidence and get access to our extensive selection of pre-owned vehicles for sale across the US. </p>
+            </div>
+            <small id="banner-info" class="text-muted">featured: BMW Individual "Daytona Violet" F82 M4</small>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!--- Navigation Bar with Logo-->
-<div class="navbar navbar-dark bg-danger shadow-sm">
-  <div class="container d-flex justify-content-between">
-    <a href="#" class="navbar-brand d-flex align-items-center">
-      <strong>AUTOSWIFT</strong>
-    </a>
-  </div>
-</div>
+    <main role="main">
+      <section class="jumbotron text-center">
+        <div class="form-container">
+          <form id="create-car-form" >
+            <h1>List a Car for sale!</h1><br>
 
-  <!-- NAV BAR ENDS -->
-</header>
+            <input id='input-year' type="number" name="year" placeholder="Enter the year..." class="input-text">
+            <br><br>
+        
+            <input id='input-brand' type="text" name="brand"  placeholder="Enter the brand..." class="input-text">
+            <br><br>
 
-<main role="main">
-  <section class="jumbotron text-center">
+            <input id='input-model' name="model" rows="8" cols="80" value="" placeholder="Enter the model">
+            <br><br>
 
+            <input id='input-price' type="number" name="price" value="" placeholder="Name your price!" class="input-text">
+            <br><br>
 
-    <img src="0DDF504B-A7F8-45DE-BF52-64245FC2E3B4 copy.JPEG" alt=".." height="img-fluid"><br><br>
-    <div class="form-container">
-      <form id="create-car-form" >
-        <h1>List a Car for sale!</h1><br>
+            <input id='input-image-url' type="text" name="image" value="" placeholder="Enter an image URL of the Car..." class="input-text">
+            <br><br>
 
-        <input id='input-year' type="number" name="year" placeholder="Enter the year..." class="input-text">
-        <br><br>
-    
-        <input id='input-brand' type="text" name="brand"  placeholder="Enter the brand..." class="input-text">
-        <br><br>
+            <h3>Select your Username</h3>
+            <br>
 
-        <input id='input-model' name="model" rows="8" cols="80" value="" placeholder="Enter the model">
-        <br><br>
-
-        <input id='input-price' type="number" name="price" value="" placeholder="Name your price!" class="input-text">
-        <br><br>
-
-        <input id='input-image-url' type="text" name="image" value="" placeholder="Enter an image URL of the Car..." class="input-text">
-        <br><br>
-
-        <h3>Select your Username</h3>
-        <br>
-
-        <select id="users-select" name="users">
-          <option selected>Select...</option>
-
-        </select>
-        <br><br>
-  
-        <input class="btn btn-info" type="submit" value="Submit">
-        <br><br>
-      </form>
-    </div>
-  </section>
-
-  <button id="sort-price">Sort by Lowest Price</button>
-
-  <div class="album py-5 bg-light">
-    <div class="car-container" id="car-container">
-
+            <select id="users-select" name="users">
+              <option selected>Select...</option>
+            </select>
+            <br><br>
       
-    </div>
-  </div>
+            <input id="submit-btn" class="btn btn-lg col-1" type="submit" value="Submit">
+            <br><br>
+          </form>
+        </div>
+      </section>
 
-</main>
+      <div class="album py-5 bg-light">
+        <button id="sort-price" class="btn btn-outline-secondary">Sort by Lowest Price</button>
 
-<footer class="text-muted">
-  <div class="container">
-    <p class="float-right">
-      <a href="#">Back to top</a>
-    </p>
-    <p>Seeda &copy; Built with Bootstrap</p>
-    <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
-  </div>
-</footer>
+        <div class="car-container" id="car-container">
+          
+        </div>
+      </div>
 
- <!-- JS Project Tags -->
+    </main>
 
- <script type="text/javascript" src="src/user.js"></script>
- <script type="text/javascript" src="src/userApi.js"></script>
- <script type="text/javascript" src="src/car.js"></script>
- <script type="text/javascript" src="src/carApi.js"></script>
- <script type="text/javascript" src="index.js"></script>
+    <footer>
+      <div class="container">
+        <p id="footer-link">
+          <a href="#">Back to top</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- JS Project Tags -->
+
+    <script type="text/javascript" src="src/user.js"></script>
+    <script type="text/javascript" src="src/userApi.js"></script>
+    <script type="text/javascript" src="src/car.js"></script>
+    <script type="text/javascript" src="src/carApi.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 
 
 
-    </body>
+  </body>
 </html>

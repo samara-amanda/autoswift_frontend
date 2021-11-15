@@ -41,4 +41,43 @@
     height: auto;
 
   }
-  
+
+  #banner-info {
+    margin-left: 20px;
+  }
+
+  .caption-line {
+    margin-left: 55%;
+    margin-bottom: 45%;
+    color: rgb(53, 26, 9);
+  }
+
+  a, footer-link {
+    font-weight: bold;
+    color: rgb(53, 26, 9);
+    text-decoration: none;
+  }
+
+  footer {
+    background-color: rgb(223, 209, 192);
+    text-align: center;
+  }
+
+  #submit-btn {
+    background-color: rgb(53, 26, 9);
+    color:white;
+  }
+
+  #sort-price {
+    margin-left: 2%;
+    margin-bottom: 2% ;
+  }
+
+  .car-container {
+   
+  }
+
+  .navbar {
+    background-color: trnasparent;
+    background: transparent;
+  }
