@@ -15,5 +15,6 @@
 - basic card styling
 - sorting button for highest price, year
 - look into making the site image fade out into the white bg.. if not find a navbar color that fits the aesthetic
+- fix navbar from scrolling with the rest of the page
 ----------------------------------------------------------------
 
