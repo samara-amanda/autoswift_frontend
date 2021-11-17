@@ -74,10 +74,21 @@
   }
 
   .car-container {
-   
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 20px;
+    text-align: center;
+    margin-top: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+}
   }
 
   .navbar {
-    background-color: trnasparent;
+    background-color: transparent;
     background: transparent;
   }
+
+  .navbar-brand img {
+    max-width: 100%;
+}

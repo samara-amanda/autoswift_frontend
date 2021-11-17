@@ -10,11 +10,21 @@
 // pending changes //
 - site image needs to be bootstrapped into carousel banner
 - carousel captions need to be added to right hand corner
-- make a section divider with navbar tabs that navigate to that specific location on the site
+- make navbar tabs that navigate to that specific location on the site
 - arrange cards into rows/columns
 - basic card styling
 - sorting button for highest price, year
-- look into making the site image fade out into the white bg.. if not find a navbar color that fits the aesthetic
 - fix navbar from scrolling with the rest of the page
 ----------------------------------------------------------------
 
+11/16
+
+- fixed car container grid 
+- resized navbar brand logo 
+
+// pending changes //
+- sorting dropdown  
+- make navbar tabs that navigate to that specific section on the site
+- implement transparent navbar without the brand-logo moving along with page scroll
+- deploy to heroku (change fetch urls)
+- center card buttons

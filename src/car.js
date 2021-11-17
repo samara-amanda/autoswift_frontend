@@ -29,8 +29,8 @@ class Car {
       const user = User.findById(this.user_id)
      
         this.div.innerHTML = `
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
+        <div class="col-lg-9">
+          <div class="card">
             <div data-id=${this.id}>
               <img src=${this.image_url} class="img-fluid" alt="...">
                 <div class="card-body">
@@ -38,7 +38,7 @@ class Car {
                   <p class="card-text">${"$" + this.price}</p>
                   <h5 class="card-text">Seller Info: ${user.name}</h5>
                   <p class="card-text">${user.email}</p>
-                  <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex justify-content-between">
                       <div class="btn-group" id="btn-group">
                         <button id="edit-btn" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                         <button id="delete-btn" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
