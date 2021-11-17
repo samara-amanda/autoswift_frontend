@@ -28,3 +28,4 @@
 - implement transparent navbar without the brand-logo moving along with page scroll
 - deploy to heroku (change fetch urls)
 - center card buttons
+- setup car container to be responsive
