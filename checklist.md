@@ -29,3 +29,6 @@
 - deploy to heroku (change fetch urls)
 - center card buttons
 - setup car container to be responsive
+
+11/18
+changed fetch url's to heroku links
