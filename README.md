@@ -1,5 +1,8 @@
 AUTOSWIFT 
 ----------------------------------------
+Link to Live Site: http://autoswift.herokuapp.com
+
+![App Image](landing-page.png "Title")
 Link to Frontend Repo: https://github.com/samaracodes/autoswift_frontend
 Link to Backend Repo: https://github.com/samara-amanda/autoswift_backend
 
