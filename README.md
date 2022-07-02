@@ -14,14 +14,50 @@ A User is able to:
 2. View a Car Listing
 
 
-How to launch the app:
-Run the following into the terminal ...
-1. bundle install
-2. rake db:create
-3. rake db:migrate
-4. rake db:seed
-5. rails s
-6. open index.html
+An MVP JS Frontend application with a Rails API backend that demonstrates Client-Server Communication and uses:
+<h4>JavaScript</h4>
+<ul>
+    <li> OOJS classes and functions to encapsulate related data and behavior
+    <li> ES6 Features such as 'let' & 'const'
+    <li> ES6 class and constructor function syntax to translate JSON responses into JS model objects
+    <li> 3 AJAX calls
+    <li> Fetch with the appropriate HTTP verb
+</ul>
+<h4>Rails</h4>
+<ul>
+    <li> Rails Models/Controllers and RESTful conventions 
+    <li> Serializers
+    <li> Postgresql
+    <li> ActiveRecord
+    <li> ORM - Object Relational Mapping between Models
+        <ol> 
+            <li>belongs_to
+            <li>has_many
+        </ol>
+    <li> The following CRUD functionality:
+        <ol>
+            <li>Create
+            <li>Read
+            <li>Delete
+        </ol>
+    <li> One class level Active Record Scope methods
+</ul>
+
+<h2>Install Instructions</h2>
+<h4>Rails Backend:</h4>
+<ul>
+    <li> Run 'bundle install'
+    <li> Run 'rake db:migrate' # migrates the tables into the database
+    <li> Run 'rake db:seed'    # migrates seed file containing initial data to test the application with
+    <li> Run the server with 'rails s'. Click here to see the JSON view of the <a href="http://localhost:3000/api/v1/cars">car objects</a> and here to see the JSON view of <a href="http://localhost:3000/api/v1/users">user objects</a>.
+</ul>
+
+<h4>JavaScript Frontend: </h4>
+<ul> 
+    <li> Clone this repo</a>.
+    <li> Run 'open index.html' in your teminal
+    <li> Make sure the Rails API backend server is running. Enjoy!
+</ul>
 
 ----- Copyright 2021 ----
 Samara Grant owns all rights to this application.
