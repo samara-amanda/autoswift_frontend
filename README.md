@@ -3,20 +3,22 @@ AUTOSWIFT
 Link to Live Site: http://autoswift.herokuapp.com
 
 ![App Image](landing-page.png "Title")
-Link to Frontend Repo: https://github.com/samaracodes/autoswift_frontend
-Link to Backend Repo: https://github.com/samara-amanda/autoswift_backend
+<p>Link to Frontend Repo: https://github.com/samaracodes/autoswift_frontend
+<br>
+<p>Link to Backend Repo: https://github.com/samara-amanda/autoswift_backend
 
 
-This app is designed for users who are looking to sell their cars or to simply browse.
+<p>This app is designed for users who are looking to sell their cars or to simply browse.
 
-A User is able to:
-1. Create a Car listing
-2. View a Car Listing
-3. Edit a Car Listing
-4. Delete a Car Listing
+<h2>A User is able to:</h2>
+<ul>
+<li>1. Create a Car listing
+<li>2. View a Car Listing
+<li>3. Edit a Car Listing
+<li>4. Delete a Car Listing
 
 
-An MVP JS Frontend application with a Rails API backend that demonstrates Client-Server Communication and uses:
+<h2>An MVP JS Frontend application with a Rails API backend that demonstrates Client-Server Communication and uses:</h2>
 <h4>JavaScript</h4>
 <ul>
     <li> OOJS classes and functions to encapsulate related data and behavior
