@@ -12,6 +12,8 @@ This app is designed for users who are looking to sell their cars or to simply b
 A User is able to:
 1. Create a Car listing
 2. View a Car Listing
+3. Edit a Car Listing
+4. Delete a Car Listing
 
 
 An MVP JS Frontend application with a Rails API backend that demonstrates Client-Server Communication and uses:
