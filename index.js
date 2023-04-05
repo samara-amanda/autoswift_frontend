@@ -1,5 +1,5 @@
-const url = "https://autoswift-backend.herokuapp.com/api/v1/cars" 
-const userUrl = "https://autoswift-backend.herokuapp.com/api/v1/users"
+const url = "http://localhost:3000/api/v1/cars" 
+const userUrl = "http://localhost:3000/api/v1/users"
 
 
 const container = document.querySelector("#car-container")
