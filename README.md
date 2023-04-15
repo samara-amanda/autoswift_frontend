@@ -53,7 +53,7 @@ Link to Live Site: http://autoswift.herokuapp.com
     <li> Run 'bundle install'
     <li> Run 'rake db:migrate' # migrates the tables into the database
     <li> Run 'rake db:seed'    # migrates seed file containing initial data to test the application with
-    <li> Run the server with 'rails s'. Click here to see the JSON view of the <a href="http://localhost:3000/api/v1/cars">car objects</a> and here to see the JSON view of <a href="http://localhost:3000/api/v1/users">user objects</a>.
+    <li> Run the server with 'rails s'. 
 </ul>
 
 <h4>JavaScript Frontend: </h4>
